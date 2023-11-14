@@ -6,5 +6,12 @@ export default defineNuxtConfig({
     typescript: {
         strict: true,
         typeCheck: true
-    }
+    },
+    alias: {
+        '@': './',
+        '#components': './.nuxt/components.d.ts'
+    },
+    modules: [
+        '@nuxtjs/tailwindcss'
+    ]
 });

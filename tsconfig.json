@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "allowJs": true,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "alwaysStrict": true,
@@ -16,7 +17,8 @@
         "noUnusedLocals": true,
         "noUnusedParameters": false,
         "paths": {
-            "@/*": ["./*"]
+            "@/*": ["./*"],
+            "#components": ["./.nuxt/components.d.ts"]
         },
         "resolveJsonModule": true,
         "skipLibCheck": true,
@@ -41,7 +43,5 @@
         ".cache",
         "dist",
         "node_modules"
-    ],
-    // https://nuxt.com/docs/guide/concepts/typescript
-    "extends": "./.nuxt/tsconfig.json"
+    ]
 }
