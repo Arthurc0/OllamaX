@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary: 0 100 136;
+    }
+
+    html[data-theme="second"] {
+        --color-primary: 233 40 45;
+    }
+}
