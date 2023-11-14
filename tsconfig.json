@@ -28,16 +28,19 @@
         "target": "ESNext",
         "useUnknownInCatchVariables": true
     },
-    "exclude": [
-        "node_modules",
-        "dist",
-        ".output"
-    ],
     "include": [
         "./**/*.ts",
-        "./**/*.js",
         "./**/*.vue",
-        "./.eslintrc.js"
+        "./.eslintrc"
+    ],
+    "exclude": [
+        ".output",
+        ".data",
+        ".nuxt",
+        ".nitro",
+        ".cache",
+        "dist",
+        "node_modules"
     ],
     // https://nuxt.com/docs/guide/concepts/typescript
     "extends": "./.nuxt/tsconfig.json"
