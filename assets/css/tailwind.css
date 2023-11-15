@@ -4,6 +4,25 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.page-enter-active,
+.page-leave-active {
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.page-enter-from {
+    transform: translateY(-5px);
+}
+
+.page-leave-to {
+    transform: translateY(5px);
+}
+
+.page-enter-from,
+.page-leave-to {
+    opacity: 0;
+}
+
 @layer base {
     *,
     *:before,

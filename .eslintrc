@@ -98,14 +98,6 @@
             { "avoidEscape": false }
         ],
         "vue/html-self-closing": ["error"],
-        "vue/max-attributes-per-line": ["error", {
-            "singleline": {
-                "max": 5
-            },
-            "multiline": {
-                "max": 1
-            }
-        }],
         "vue/mustache-interpolation-spacing": ["error", "always"],
         "vue/no-multi-spaces": ["error"],
         "vue/no-spaces-around-equal-signs-in-attribute": ["error"],

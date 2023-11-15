@@ -3,12 +3,12 @@
         <span class="font-bold uppercase tracking-wide px-4 text-xl">OllamaX</span>
         <div class="flex flex-col justify-between h-full overflow-hidden items-stretch gap-4">
             <nav class="flex flex-col gap-3 overflow-y-auto">
-                <NuxtLink v-for="link in navLinks" :key="link.label" :to="link.url" class="flex items-center gap-3 font-semibold w-full transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md" :title="link.label">
+                <NuxtLink v-for="link in navLinks" :key="link.label" :to="link.url" class="flex items-center gap-3 font-semibold w-full transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md" :class="link.url === currentRoute ? 'bg-light-blue text-purple' : ''" :title="link.label">
                     <BaseAppIcon size="md" :name="link.icon" />
                     <span class="truncate">{{ link.label }}</span>
                 </NuxtLink>
             </nav>
-            <NuxtLink :to="RouteEnum.SETTINGS" class="flex items-center gap-3 font-semibold w-full transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md">
+            <NuxtLink :to="RouteEnum.SETTINGS" class="flex items-center gap-3 font-semibold w-full transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md" :class="RouteEnum.SETTINGS === currentRoute ? 'bg-light-blue text-purple' : ''">
                 <BaseAppIcon size="md" :name="IconEnum.SETTINGS" />
                 <span>Paramètres</span>
             </NuxtLink>
@@ -20,6 +20,7 @@
 import { IconEnum } from '@/enums/base/IconEnum';
 import type { NavLinkInterface } from '@/interfaces/base/NavLinkInterface';
 import { RouteEnum } from '@/enums/base/RouteEnum';
+import type { RouteLocationNormalizedLoaded } from 'vue-router';
 
 const navLinks: NavLinkInterface[] = [
     {
@@ -28,4 +29,6 @@ const navLinks: NavLinkInterface[] = [
         url: RouteEnum.CHAT
     }
 ];
+const route: RouteLocationNormalizedLoaded = useRoute();
+const currentRoute = computed(() => route.path);
 </script>
