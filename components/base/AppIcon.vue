@@ -17,9 +17,9 @@ defineProps<{
 const computedSize = {
     'sm': '10',
     'md': '23',
-    'lg': '50',
+    'lg': '45',
     'xl': '70',
-    '2xl': '90',
-    '3xl': '110'
+    '2xl': '100',
+    '3xl': '140'
 };
 </script>

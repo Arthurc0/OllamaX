@@ -4,26 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.page-enter-active,
-.page-leave-active {
-    transition: transform 0.2s, opacity 0.2s;
-}
-
-.page-enter-from {
-    transform: translateY(-5px);
-}
-
-.page-leave-to {
-    transform: translateY(5px);
-}
-
-.page-enter-from,
-.page-leave-to {
-    opacity: 0;
-}
-
 @layer base {
+    :root {
+        --color-purple: 79 83 184;
+        --color-gray: 3 7 17;
+        --color-light-gray: 244 247 250;
+        --color-light-blue: 240 245 255;
+        --color-white: 255 255 255;
+    }
+
     *,
     *:before,
     *:after {
@@ -38,18 +27,20 @@
     }
 
     body {
+        @apply bg-light-gray;
         font-family: 'Inter', 'Arial', sans-serif;
+    }
+
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .layout {
         max-width: 170em !important;
         margin: 0 auto;
-    }
-
-    :root {
-        --color-purple: 79 83 184;
-        --color-gray: 3 7 17;
-        --color-light-blue: 240 245 255;
     }
 
     *::-webkit-scrollbar {
@@ -75,4 +66,22 @@
     *::-webkit-scrollbar-track:active {
         background: #f1f1f1;
     }
+}
+
+.page-enter-active,
+.page-leave-active {
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.page-enter-from {
+    transform: translateY(-5px);
+}
+
+.page-leave-to {
+    transform: translateY(5px);
+}
+
+.page-enter-from,
+.page-leave-to {
+    opacity: 0;
 }

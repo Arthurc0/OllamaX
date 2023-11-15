@@ -5,7 +5,9 @@ export default {
         colors: {
             'purple': 'rgb(var(--color-purple))',
             'gray': 'rgb(var(--color-gray))',
-            'light-blue': 'rgb(var(--color-light-blue))'
+            'light-gray': 'rgb(var(--color-light-gray))',
+            'light-blue': 'rgb(var(--color-light-blue))',
+            'white': 'rgb(var(--color-white))'
         },
         transitionDuration: {
             '200': '200ms'
