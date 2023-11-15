@@ -1,3 +1,14 @@
 <template>
-    <h1 class="text-4xl text-primary text-center">OllamaX</h1>
+    <NuxtLayout name="default">
+        <template #title>Discussions</template>
+        <template #content>
+            <div>Contenu</div>
+        </template>
+    </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+    layout: false
+});
+</script>

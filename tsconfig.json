@@ -17,8 +17,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": false,
         "paths": {
-            "@/*": ["./*"],
-            "#components": ["./.nuxt/components.d.ts"]
+            "@/*": ["./*"]
         },
         "resolveJsonModule": true,
         "skipLibCheck": true,
@@ -28,6 +27,7 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": false,
         "target": "ESNext",
+        "types": ["vite/client"],
         "useUnknownInCatchVariables": true
     },
     "include": [
@@ -43,5 +43,7 @@
         ".cache",
         "dist",
         "node_modules"
-    ]
+    ],
+    "extends": "./.nuxt/tsconfig.json",
+    "files": ["./.nuxt/nuxt.d.ts"]
 }
