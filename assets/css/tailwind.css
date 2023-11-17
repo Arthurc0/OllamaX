@@ -42,6 +42,40 @@
         max-width: 170em !important;
         margin: 0 auto;
     }
+    
+    .animate-loader-circular-rotate {
+        animation: animation-loader-circular-rotate 1s linear infinite;
+    }
+
+    .loader-circular-shape {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+        stroke-linecap: round;
+        animation: animation-loader-circular-turn 1.4s ease-in-out infinite;
+    }
+
+    @keyframes animation-loader-circular-rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes animation-loader-circular-turn {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35;
+        }
+
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124;
+        }
+    }
 
     *::-webkit-scrollbar {
         width: 7px;
@@ -72,16 +106,37 @@
 .page-leave-active {
     transition: transform 0.2s, opacity 0.2s;
 }
-
-.page-enter-from {
-    transform: translateY(-5px);
-}
-
-.page-leave-to {
-    transform: translateY(5px);
-}
-
 .page-enter-from,
 .page-leave-to {
     opacity: 0;
+}
+
+.fadeSlide-enter-active,
+.fadeSlide-leave-active {
+    transition: transform 0.3s, opacity 0.3s;
+}
+.fadeSlide-enter-from {
+    transform: translateY(-10px);
+}
+.fadeSlide-leave-to {
+    transform: translateY(10px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.modalPopup-enter-active,
+.modalPopup-leave-active {
+    transition: transform 0.3s, opacity 0.3s;
+}
+.modalPopup-enter-from,
+.modalPopup-leave-to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
 }
