@@ -27,8 +27,8 @@
         </g>
     </symbol>
 
-    <symbol id="CHAT" viewBox="0 0 24 24" stroke-width="0.7" stroke="currentColor" fill="currentColor">
-        <path d="M5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455Z"></path>
+    <symbol id="CHAT" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM7 10V12H9V10H7ZM11 10V12H13V10H11ZM15 10V12H17V10H15Z"></path>
     </symbol>
 
     <symbol id="SETTINGS" viewBox="0 0 24 24" fill="currentColor">
@@ -37,6 +37,10 @@
 
     <symbol id="USER" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20 22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13Z"></path>
+    </symbol>
+    
+    <symbol id="LOGOUT" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path>
     </symbol>
 
 

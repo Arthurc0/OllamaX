@@ -12,5 +12,5 @@
 </template>
 
 <script setup lang="ts">
-import { IconEnum } from '@/enums/base/IconEnum';
+import { IconEnum } from '@/enums/IconEnum';
 </script>

@@ -1,11 +1,15 @@
 export default defineNuxtConfig({
-    devtools: { enabled: true },
+    devtools: {
+        enabled: true
+    },
     typescript: {
         strict: true,
         typeCheck: true
     },
     modules: [
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+        '@pinia/nuxt',
+        '@nuxt/image'
     ],
     app: {
         pageTransition: {
@@ -13,5 +17,12 @@ export default defineNuxtConfig({
             mode: 'out-in',
             name: 'page'
         }
+    },
+    imports: {
+        dirs: [
+            'composables/**',
+            'stores/**',
+            'utils/**'
+        ]
     }
 });

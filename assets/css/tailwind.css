@@ -103,7 +103,7 @@
 }
 
 @layer utilities {
-    .custom-outline {
+    * {
         @apply outline-none ring-0 focus-visible:ring-2 focus-visible:ring-gray/10;
     }
 }
@@ -145,4 +145,21 @@
 .modalPopup-leave-to {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.95);
+}
+
+.menuPopup-enter-active {
+    animation: 0.2s ease-in-out menuPopup;
+}
+.menuPopup-leave-active {
+    animation: 0.2s ease-in-out menuPopup reverse;
+}
+@keyframes menuPopup {
+    0% {
+        opacity: 0;
+        transform: translateY(-117%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-120%);
+    }
 }

@@ -3,6 +3,8 @@ export enum IconEnum {
     OLLAMA = 'OLLAMA',
     CHAT = 'CHAT',
     SETTINGS = 'SETTINGS',
+    USER = 'USER',
+    LOGOUT = 'LOGOUT',
 
     CLOSE = 'CLOSE',
     ERROR = 'ERROR',

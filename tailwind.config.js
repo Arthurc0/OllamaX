@@ -11,6 +11,12 @@ export default {
         },
         transitionDuration: {
             '200': '200ms'
+        },
+        zIndex: {
+            'alert': '400',
+            'modal': '300',
+            'modal-overlay': '200',
+            'user-profile': '2'
         }
     },
     plugins: [
