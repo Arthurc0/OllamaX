@@ -102,6 +102,12 @@
     }
 }
 
+@layer utilities {
+    .custom-outline {
+        @apply outline-none ring-0 focus-visible:ring-2 focus-visible:ring-gray/10;
+    }
+}
+
 .page-enter-active,
 .page-leave-active {
     transition: transform 0.2s, opacity 0.2s;
