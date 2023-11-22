@@ -1,13 +1,13 @@
 <template>
     <Teleport to="body">
         <Transition :name="TransitionEnum.MODAL_POPUP" mode="out-in">
-            <div ref="modalElement" class="will-change-transform fixed flex flex-col gap-6 p-5 rounded-2xl shadow-xl bg-white shadow-lg top-[50vh] w-fit left-[50vw]  translate-x-[-50%] translate-y-[-50%] w-[80%] max-w-[600px] z-modal" v-if="modelValue">
+            <div ref="modalElement" class="will-change-transform fixed flex flex-col gap-6 p-5 rounded-2xl shadow-xl bg-white shadow-lg top-[50vh] left-[50vw] translate-x-[-50%] translate-y-[-50%] w-[80%] max-w-[600px] z-modal" v-if="modelValue">
                 <div class="flex items-center justify-between gap-7">
-                    <h2 class="text-2xl font-semibold break-word hyphens-auto">
+                    <h2 class="select-none text-2xl font-semibold break-word hyphens-auto">
                         <slot name="title" />
                     </h2>
                     <div class="flex items-center justify-center bg-gray-100 p-[2px] rounded-lg transition duration-[200ms] cursor-pointer hover:bg-gray/5" @click="closeModal">
-                        <BaseAppIcon :name="IconEnum.CLOSE" color="text-gray" size="sm" />
+                        <AppIcon :name="IconEnum.CLOSE" color="text-gray" size="sm" />
                     </div>
                 </div>
                 <slot name="content" />

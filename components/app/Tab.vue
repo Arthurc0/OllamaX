@@ -1,6 +1,6 @@
 <template>
     <Transition :name="TransitionEnum.FADE" mode="out-in">
-        <div class="absolute" v-if="isSelected">
+        <div class="absolute w-full" v-if="isSelected">
             <slot />
         </div>
     </Transition>
