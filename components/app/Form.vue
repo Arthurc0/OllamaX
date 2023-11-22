@@ -85,9 +85,8 @@ const submitForm = async (validateField: boolean = true): Promise<void> => {
         emit('submit', values);
     }
 };
-const setFormValue = async (names: string[], event: Event, validateField: boolean = true): Promise<void> => {
-    const target = event.target as HTMLInputElement | HTMLSelectElement;
-    values[names[0]!] = target.value;
+const setFormValue = async (names: string[], value: string, validateField: boolean = true): Promise<void> => {
+    values[names[0]!] = value;
     if (validateField) await validateValues(names);
     else await submitForm(validateField);
 };

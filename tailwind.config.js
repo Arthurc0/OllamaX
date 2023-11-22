@@ -18,6 +18,11 @@ export default {
             'modal': '300',
             'modal-overlay': '200',
             'user-profile': '2'
+        },
+        extend: {
+            boxShadow: {
+                'around': 'rgba(0, 0, 0, 0.1) 0px 3px 20px 5px'
+            }
         }
     },
     plugins: [

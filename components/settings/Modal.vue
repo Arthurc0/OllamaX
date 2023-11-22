@@ -6,7 +6,7 @@
                 <AppTabs>
                     <AppTab :title="settingsTabs.general">
                         <AppForm :validation-schema="validationSchemaLanguage" class="flex flex-col gap-6" @submit="changeLanguage">
-                            <AppInput :type="InputTypeEnum.SELECT" :select-options="languages" :field="fieldsGeneral.language" :pending="pendingLanguage" />
+                            <AppInput :type="InputTypeEnum.SELECT" :select-items="languages" :field="fieldsGeneral.language" :pending="pendingLanguage" />
                         </AppForm>
                     </AppTab>
                     <AppTab :title="settingsTabs.themes">Thèmes</AppTab>
@@ -30,7 +30,7 @@ import { InputStyleEnum } from '@/enums/input/InputStyleEnum';
 import * as yup from 'yup';
 import { RequestError } from '@/classes/RequestError';
 import { ErrorCodeEnum } from '@/enums/ErrorCodeEnum';
-import type { SelectOptionInterface } from '@/interfaces/input/SelectOptionInterface';
+import type { SelectItemInterface } from '@/interfaces/select/SelectItemInterface';
 
 const props = defineProps<{
     modelValue: boolean;
@@ -49,7 +49,7 @@ const settingsTabs = {
     about: 'À propos'
 };
 
-const pendingLanguage = ref(true);
+const pendingLanguage = ref(false);
 const pendingSettings = ref(false);
 const validationRules = useValidationRules();
 const validationSchemaSettings = {
@@ -66,8 +66,8 @@ const fieldsSettings = {
     email: { name: 'email', label: 'Adresse email' },
     password: { name: 'password', label: 'Mot de passe' }
 };
-const languages: SelectOptionInterface[] = [
-    { label: 'Français', value: 'fr', selected: true },
+const languages: SelectItemInterface[] = [
+    { label: 'Français', value: 'fr', default: true },
     { label: 'Anglais', value: 'en' }
 ];
 

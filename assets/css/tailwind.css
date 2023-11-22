@@ -164,3 +164,20 @@
         transform: translateY(-108%);
     }
 }
+
+.selectListPopup-enter-active {
+    animation: 0.2s ease-in-out selectListPopup;
+}
+.selectListPopup-leave-active {
+    animation: 0.2s ease-in-out selectListPopup reverse;
+}
+@keyframes selectListPopup {
+    0% {
+        opacity: 0;
+        transform: translateY(102%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(105%);
+    }
+}

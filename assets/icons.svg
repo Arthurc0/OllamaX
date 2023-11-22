@@ -42,6 +42,14 @@
     <symbol id="LOGOUT" viewBox="0 0 24 24" fill="currentColor">
         <path d="M5 22C4.44772 22 4 21.5523 4 21V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V6H18V4H6V20H18V18H20V21C20 21.5523 19.5523 22 19 22H5ZM18 16V13H11V11H18V8L23 12L18 16Z"></path>
     </symbol>
+    
+    <symbol id="ARROW_DOWN" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 15.0006L7.75732 10.758L9.17154 9.34375L12 12.1722L14.8284 9.34375L16.2426 10.758L12 15.0006Z"></path>
+    </symbol>
+    
+    <symbol id="ARROW_UP" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 11.8284L9.17154 14.6569L7.75732 13.2426L12 9L16.2426 13.2426L14.8284 14.6569L12 11.8284Z"></path>
+    </symbol>
 
 
 

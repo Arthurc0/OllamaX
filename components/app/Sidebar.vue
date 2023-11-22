@@ -14,7 +14,7 @@
                 <div class="border-t-2 border-gray/5" />
                 <div class="relative m-4">
                     <Transition :name="TransitionEnum.MENU_POPUP">
-                        <div class="select-none absolute w-full bg-white flex flex-col gap-4 py-3 rounded-md text-[15px] text-gray/70" style="transform: translateY(-108%); box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 20px 5px" v-if="isUserNavShowed">
+                        <div class="select-none absolute w-full bg-white flex flex-col gap-4 py-3 rounded-md text-[15px] text-gray/70 shadow-around" style="transform: translateY(-108%);" v-if="isUserNavShowed">
                             <div class="flex items-center justify-between px-4 gap-3 font-semibold">
                                 <span class="text-lg break-all leading-none">Arthurc0</span>
                                 <AppImage class="rounded-full border border-2 border-gray/30" size="md" :type="ImageTypeEnum.PROFILE" src="profile.jpg" />
