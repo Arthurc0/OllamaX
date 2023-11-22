@@ -1,6 +1,6 @@
 <template>
     <div class="layout overflow-hidden flex items-stretch h-screen">
-        <BaseAppSidebar />
+        <AppSidebar />
         <slot />
     </div>
 </template>

@@ -7,7 +7,8 @@ export default {
             'gray': 'rgb(var(--color-gray))',
             'light-gray': 'rgb(var(--color-light-gray))',
             'light-blue': 'rgb(var(--color-light-blue))',
-            'white': 'rgb(var(--color-white))'
+            'white': 'rgb(var(--color-white))',
+            'red': 'rgb(var(--color-red))'
         },
         transitionDuration: {
             '200': '200ms'
