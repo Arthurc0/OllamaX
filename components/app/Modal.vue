@@ -10,7 +10,7 @@
                         <AppIcon :name="IconEnum.CLOSE" color="text-gray" size="sm" />
                     </div>
                 </div>
-                <slot name="content" />
+                <slot name="content" :close-modal="closeModal" />
             </div>
         </Transition>
         <Transition :name="TransitionEnum.FADE" mode="out-in">

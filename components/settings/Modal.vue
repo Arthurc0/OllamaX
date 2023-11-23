@@ -1,8 +1,11 @@
 <template>
     <AppModal v-if="isClearDataModalOpened" v-model="isClearDataModalOpened">
-        <template #title>Effacer les données</template>
-        <template #content>
-            test
+        <template #title>Effacer les données ?</template>
+        <template #content="{ closeModal }">
+            <div class="flex items-stretch self-end gap-4">
+                <AppButton :type="ButtonTypeEnum.CANCEL" @click="closeModal">Non</AppButton>
+                <AppButton :type="ButtonTypeEnum.OK">Oui</AppButton>
+            </div>
         </template>
     </AppModal>
 
@@ -12,11 +15,11 @@
             <div class="flex flex-col h-[30vh]">
                 <AppTabs>
                     <AppTab :title="settingsTabs.general">
-                        <div class="flex flex-col items-start gap-8">
+                        <div class="flex flex-col items-start gap-6">
                             <AppForm :validation-schema="validationSchemaLanguage" class="flex flex-col gap-6" @submit="changeLanguage">
                                 <AppInput :type="InputTypeEnum.SELECT" :select-items="languages" :field="fieldsGeneral.language" :pending="pendingLanguage" />
                             </AppForm>
-                            <AppButton :type="ButtonTypeEnum.DELETE" @click="clearUserData">Effacer les données</AppButton>
+                            <AppButton :type="ButtonTypeEnum.NO" @click="clearUserData">Effacer les données</AppButton>
                         </div>
                     </AppTab>
                     <AppTab :title="settingsTabs.themes">Thèmes</AppTab>
