@@ -7,8 +7,8 @@
         <AppIcon v-else :name="IconEnum.ARROW_DOWN" size="sm" />
 
         <Transition :name="TransitionEnum.SELECT_LIST_POPUP">
-            <div v-show="isSelectListShowed" class="absolute w-full flex flex-col items-stretch bg-white left-0 bottom-0 gap-1 p-2 rounded-lg p-1 shadow-md border-2 border-light-gray" style="transform: translateY(105%);">
-                <div class="cursor-pointer transition duration-200 py-1 px-2 rounded-md text-sm text-gray/80 hover:bg-light-blue" :class="[isSelectedItem(item) ? 'bg-light-blue' : '']" v-for="item in items" :key="item.value" @click="changeItem(item)">
+            <div v-show="isSelectListShowed" class="absolute w-full flex flex-col items-stretch bg-white left-0 bottom-0 gap-[7px] p-2 rounded-lg p-1 shadow-md border-2 border-light-gray" style="transform: translateY(105%);">
+                <div class="cursor-pointer transition duration-200 py-[6px] px-3 rounded-md text-sm text-gray/80 hover:bg-light-blue" :class="[isSelectedItem(item) ? 'bg-light-blue' : '']" v-for="item in items" :key="item.value" @click="changeItem(item)">
                     <span>{{ item.label }}</span>
                 </div>
             </div>

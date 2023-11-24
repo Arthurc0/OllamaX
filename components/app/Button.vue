@@ -1,6 +1,6 @@
 <template>
-    <RouterLink v-if="to" class="transition duration-[200ms]" :class="customClass" :to="to"><slot /></RouterLink>
-    <button type="button" v-else class="transition duration-[300ms]" :class="customClass"><slot /></button>
+    <RouterLink v-if="to" class="inline-flex items-center transition duration-[200ms] gap-2" :class="customClass" :to="to"><slot /></RouterLink>
+    <button type="button" v-else class="inline-flex items-center transition duration-[300ms] gap-2" :class="customClass"><slot /></button>
 </template>
 
 <script setup lang="ts">

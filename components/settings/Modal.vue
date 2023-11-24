@@ -1,5 +1,5 @@
 <template>
-    <AppModal v-if="isClearDataModalOpened" v-model="isClearDataModalOpened">
+    <AppModal v-if="isClearDataModalOpened" @change="isClearDataModalOpened = false">
         <template #title>Effacer les données ?</template>
         <template #content="{ closeModal }">
             <div class="flex items-stretch self-end gap-4">
@@ -9,7 +9,7 @@
         </template>
     </AppModal>
 
-    <AppModal v-if="isSettingsModalOpened" v-model="isSettingsModalOpened" width="80%">
+    <AppModal v-if="isSettingsModalOpened" @change="settingsModalChange" width="80%">
         <template #title>Paramètres</template>
         <template #content>
             <div class="flex flex-col h-[30vh]">
@@ -19,10 +19,32 @@
                             <AppForm :validation-schema="validationSchemaLanguage" class="flex flex-col gap-6" @submit="changeLanguage">
                                 <AppInput :type="InputTypeEnum.SELECT" :select-items="languages" :field="fieldsGeneral.language" :pending="pendingLanguage" />
                             </AppForm>
-                            <AppButton :type="ButtonTypeEnum.NO" @click="clearUserData">Effacer les données</AppButton>
+                            <AppButton :type="ButtonTypeEnum.NO" @click="clearUserData">
+                                <AppIcon color="text-white/90" :name="IconEnum.DELETE" size="xs" />
+                                <span>Effacer les données</span>
+                            </AppButton>
                         </div>
                     </AppTab>
-                    <AppTab :title="settingsTabs.themes">Thèmes</AppTab>
+                    <AppTab :title="settingsTabs.themes">
+                        <div class="flex flex-col gap-7 pb-4">
+                            <div class="grid grid-cols-4 gap-4">
+                                <SettingsAddThemeCard @click="addTheme" />
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4 class="text-md font-semibold text-gray/80">Personnalisés</h4>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <SettingsThemeCard v-for="theme in customThemes" :key="theme.name" :theme="theme" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <h4 class="text-md font-semibold text-gray/80">Par défaut</h4>
+                                <div class="grid grid-cols-4 gap-4">
+                                    <SettingsThemeCard :theme="selectedTheme" />
+                                    <SettingsThemeCard v-for="theme in defaultThemes" :key="theme.name" :theme="theme" />
+                                </div>
+                            </div>
+                        </div>
+                    </AppTab>
                     <AppTab :title="settingsTabs.profile">
                         <LazyAppForm class="flex flex-col gap-6" button-value="Modifier" :pending="pendingSettings" :validation-schema="validationSchemaSettings" @submit="formSubmitSettings">
                             <AppInput :type="InputTypeEnum.TEXT" :style="InputStyleEnum.EDITABLE" :field="fieldsSettings.email" />
@@ -38,6 +60,7 @@
 
 <script setup lang="ts">
 import { RouteEnum } from '@/enums/RouteEnum';
+import { IconEnum } from '@/enums/IconEnum';
 import { InputTypeEnum } from '@/enums/input/InputTypeEnum';
 import { InputStyleEnum } from '@/enums/input/InputStyleEnum';
 import * as yup from 'yup';
@@ -45,6 +68,7 @@ import { RequestError } from '@/classes/RequestError';
 import { ErrorCodeEnum } from '@/enums/ErrorCodeEnum';
 import type { SelectItemInterface } from '@/interfaces/select/SelectItemInterface';
 import { ButtonTypeEnum } from '@/enums/button/ButtonTypeEnum';
+import type { ThemeInterface } from '@/interfaces/theme/ThemeInterface';
 
 const props = defineProps<{
     modelValue: boolean;
@@ -62,6 +86,20 @@ const settingsTabs = {
     themes: 'Thèmes',
     profile: 'Profil',
     about: 'À propos'
+};
+const selectedTheme: ThemeInterface = {
+    name: 'Light Purple',
+    gradient: ['#f0f5ff', '#4b3dc9'],
+    selected: true
+};
+const defaultThemes: ThemeInterface[] = [
+    { name: 'Dark Purple', gradient: ['#363636', '#4b3dc9'] }
+];
+const customThemes: ThemeInterface[] = [
+    { name: 'Custom 1', gradient: ['red', 'yellow'] }
+];
+const addTheme = () => {
+    console.log('add theme');
 };
 
 const pendingLanguage = ref(false);
@@ -120,7 +158,8 @@ const formSubmitSettings = async (formValues: object): Promise<void> => {
         }
     }
 };
-watch(isSettingsModalOpened, () => {
-    emit('update:modelValue', isSettingsModalOpened.value);
-});
+
+const settingsModalChange = (value: boolean) => {
+    emit('update:modelValue', value);
+};
 </script>

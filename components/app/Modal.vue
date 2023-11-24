@@ -26,7 +26,7 @@ import { TransitionEnum } from '@/enums/TransitionEnum';
 defineProps<{
     width?: string;
 }>();
-const emit = defineEmits<(e: 'update:modelValue', value: boolean) => void>();
+const emit = defineEmits<(e: 'change', value: boolean) => void>();
 
 const modalStore = useModalStore();
 const { zIndexModal, zIndexModalOverlay } = modalStore.addModal();
@@ -40,7 +40,7 @@ const closeModal = async () => {
     await useTimeout(() => {
         isOpened.value = false;
     }, 1);
-    emit('update:modelValue', false);
+    emit('change', false);
 };
 const escapeCloseModal = (e: KeyboardEvent) => {
     if (e.code !== 'Escape' || !isOpened.value || modalNumber.value < openedModalCount.value) return;
