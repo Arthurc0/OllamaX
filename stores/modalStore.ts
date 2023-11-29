@@ -1,30 +1,42 @@
+import { ComponentEnum } from '@/enums/ComponentEnum';
+import type { ModalInterface } from '@/interfaces/modal/ModalInterface';
+
 export const useModalStore = defineStore('modal', {
     state: () => ({
-        openedModalCount: 0,
-        currentZIndexModal: 199,
-        currentZIndexModalOverlay: 199
+        isOpened: false,
+        title: '',
+        width: '',
+        height: '',
+        view: ComponentEnum.SETTINGS_MODAL,
+        modals: [] as ModalInterface[]
     }),
     actions: {
-        addModal() {
-            this.currentZIndexModalOverlay = this.currentZIndexModal + 1;
-            this.currentZIndexModal = this.currentZIndexModalOverlay + 1;
-            return {
-                zIndexModal: this.currentZIndexModal,
-                zIndexModalOverlay: this.currentZIndexModalOverlay
-            };
+        open(props: ModalInterface) {
+            this.title = props.title;
+            this.width = props.width ?? '400px';
+            this.height = props.height ?? '300px';
+            this.view = props.view;
+            this.modals.push({ ...props, width: this.width, height: this.height });
+            this.isOpened = true;
         },
-        openModal() {
-            return ++this.openedModalCount;
-        },
-        removeModal() {
-            this.openedModalCount--;
-            this.currentZIndexModal -= 2;
-            this.currentZIndexModalOverlay -= 2;
+        close() {
+            this.modals.pop();
+            if (this.modals.length) {
+                const { title, width, height, view } = this.modals[this.modals.length - 1]!;
+                this.title = title;
+                this.width = width!;
+                this.height = height!;
+                this.view = view;
+            } else {
+                this.isOpened = false;
+                useTimeout(() => {
+                    this.title = '';
+                    this.width = '';
+                    this.height = '';
+                    this.view = ComponentEnum.SETTINGS_MODAL;
+                }, 300);
+            }
         }
     },
-    getters: {
-        getOpenedModalCount(): number {
-            return this.openedModalCount;
-        }
-    }
+    getters: {}
 });

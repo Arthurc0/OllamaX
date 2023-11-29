@@ -16,6 +16,8 @@ export default {
         },
         zIndex: {
             'alert': '400',
+            'modal': '201',
+            'modal-overlay': '200',
             'user-profile': '2'
         },
         extend: {

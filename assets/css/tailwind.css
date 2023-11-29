@@ -141,7 +141,7 @@
 
 .modalPopup-enter-active,
 .modalPopup-leave-active {
-    transition: transform 0.3s, opacity 0.3s;
+    transition: max-width 0.25s, max-height 0.25s, transform 0.25s, opacity 0.25s;
 }
 .modalPopup-enter-from,
 .modalPopup-leave-to {

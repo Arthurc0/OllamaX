@@ -1,61 +1,46 @@
 <template>
-    <AppModal v-if="isClearDataModalOpened" @change="isClearDataModalOpened = false">
-        <template #title>Effacer les données ?</template>
-        <template #content="{ closeModal }">
-            <div class="flex items-stretch self-end gap-4">
-                <AppButton :type="ButtonTypeEnum.CANCEL" @click="closeModal">Non</AppButton>
-                <AppButton :type="ButtonTypeEnum.OK">Oui</AppButton>
-            </div>
-        </template>
-    </AppModal>
-
-    <AppModal v-if="isSettingsModalOpened" @change="settingsModalChange" width="80%">
-        <template #title>Paramètres</template>
-        <template #content>
-            <div class="flex flex-col h-[30vh]">
-                <AppTabs>
-                    <AppTab :title="settingsTabs.general">
-                        <div class="flex flex-col items-start gap-6">
-                            <AppForm :validation-schema="validationSchemaLanguage" class="flex flex-col gap-6" @submit="changeLanguage">
-                                <AppInput :type="InputTypeEnum.SELECT" :select-items="languages" :field="fieldsGeneral.language" :pending="pendingLanguage" />
-                            </AppForm>
-                            <AppButton :type="ButtonTypeEnum.NO" @click="clearUserData">
-                                <AppIcon color="text-white/90" :name="IconEnum.DELETE" size="xs" />
-                                <span>Effacer les données</span>
-                            </AppButton>
+    <div class="flex flex-col h-full">
+        <AppTabs>
+            <AppTab :title="settingsTabs.general">
+                <div class="flex flex-col items-start gap-6">
+                    <AppForm :validation-schema="validationSchemaLanguage" class="flex flex-col gap-6" @submit="changeLanguage">
+                        <AppInput :type="InputTypeEnum.SELECT" :select-items="languages" :field="fieldsGeneral.language" :pending="pendingLanguage" />
+                    </AppForm>
+                    <AppButton :type="ButtonTypeEnum.NO" @click="openClearDataModal">
+                        <AppIcon color="text-white/90" :name="IconEnum.DELETE" size="xs" />
+                        <span>Effacer les données</span>
+                    </AppButton>
+                </div>
+            </AppTab>
+            <AppTab :title="settingsTabs.themes">
+                <div class="flex flex-col gap-7 pb-4">
+                    <div class="grid grid-cols-4 gap-4">
+                        <SettingsAddThemeCard @click="addTheme" />
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-md font-semibold text-gray/80">Personnalisés</h4>
+                        <div class="grid grid-cols-4 gap-4">
+                            <SettingsThemeCard v-for="theme in customThemes" :key="theme.name" :theme="theme" />
                         </div>
-                    </AppTab>
-                    <AppTab :title="settingsTabs.themes">
-                        <div class="flex flex-col gap-7 pb-4">
-                            <div class="grid grid-cols-4 gap-4">
-                                <SettingsAddThemeCard @click="addTheme" />
-                            </div>
-                            <div class="flex flex-col gap-3">
-                                <h4 class="text-md font-semibold text-gray/80">Personnalisés</h4>
-                                <div class="grid grid-cols-4 gap-4">
-                                    <SettingsThemeCard v-for="theme in customThemes" :key="theme.name" :theme="theme" />
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-3">
-                                <h4 class="text-md font-semibold text-gray/80">Par défaut</h4>
-                                <div class="grid grid-cols-4 gap-4">
-                                    <SettingsThemeCard :theme="selectedTheme" />
-                                    <SettingsThemeCard v-for="theme in defaultThemes" :key="theme.name" :theme="theme" />
-                                </div>
-                            </div>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <h4 class="text-md font-semibold text-gray/80">Par défaut</h4>
+                        <div class="grid grid-cols-4 gap-4">
+                            <SettingsThemeCard :theme="selectedTheme" />
+                            <SettingsThemeCard v-for="theme in defaultThemes" :key="theme.name" :theme="theme" />
                         </div>
-                    </AppTab>
-                    <AppTab :title="settingsTabs.profile">
-                        <LazyAppForm class="flex flex-col gap-6" button-value="Modifier" :pending="pendingSettings" :validation-schema="validationSchemaSettings" @submit="formSubmitSettings">
-                            <AppInput :type="InputTypeEnum.TEXT" :style="InputStyleEnum.EDITABLE" :field="fieldsSettings.email" />
-                            <AppInput :type="InputTypeEnum.PASSWORD" :style="InputStyleEnum.EDITABLE" :field="fieldsSettings.password" />
-                        </LazyAppForm>
-                    </AppTab>
-                    <AppTab :title="settingsTabs.about">À propos</AppTab>
-                </AppTabs>
-            </div>
-        </template>
-    </AppModal>
+                    </div>
+                </div>
+            </AppTab>
+            <AppTab :title="settingsTabs.profile">
+                <LazyAppForm class="flex flex-col gap-6" button-value="Modifier" :pending="pendingSettings" :validation-schema="validationSchemaSettings" @submit="formSubmitSettings">
+                    <AppInput :type="InputTypeEnum.TEXT" :style="InputStyleEnum.EDITABLE" :field="fieldsSettings.email" />
+                    <AppInput :type="InputTypeEnum.PASSWORD" :style="InputStyleEnum.EDITABLE" :field="fieldsSettings.password" />
+                </LazyAppForm>
+            </AppTab>
+            <AppTab :title="settingsTabs.about">À propos</AppTab>
+        </AppTabs>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -69,17 +54,7 @@ import { ErrorCodeEnum } from '@/enums/ErrorCodeEnum';
 import type { SelectItemInterface } from '@/interfaces/select/SelectItemInterface';
 import { ButtonTypeEnum } from '@/enums/button/ButtonTypeEnum';
 import type { ThemeInterface } from '@/interfaces/theme/ThemeInterface';
-
-const props = defineProps<{
-    modelValue: boolean;
-}>();
-const emit = defineEmits<(e: 'update:modelValue', value: boolean) => void>();
-const propsModelValue = computed(() => props.modelValue);
-const isSettingsModalOpened = ref(false);
-const isClearDataModalOpened = ref(false);
-watch(propsModelValue, (value) => {
-    isSettingsModalOpened.value = value;
-});
+import { ComponentEnum } from '@/enums/ComponentEnum';
 
 const settingsTabs = {
     general: 'Général',
@@ -98,10 +73,7 @@ const defaultThemes: ThemeInterface[] = [
 const customThemes: ThemeInterface[] = [
     { name: 'Custom 1', gradient: ['red', 'yellow'] }
 ];
-const addTheme = () => {
-    console.log('add theme');
-};
-
+const modalStore = useModalStore();
 const pendingLanguage = ref(false);
 const pendingSettings = ref(false);
 const validationRules = useValidationRules();
@@ -124,6 +96,17 @@ const languages: SelectItemInterface[] = [
     { label: 'Anglais', value: 'en' }
 ];
 
+const addTheme = () => {
+    console.log('add theme');
+};
+const openClearDataModal = () => {
+    modalStore.open({
+        title: 'Effacer les données ?',
+        view: ComponentEnum.SETTINGS_CLEAR_DATA_MODAL,
+        width: '400px',
+        height: '144px'
+    });
+};
 const changeLanguage = async (formValues: object): Promise<void> => {
     const yupSchema = yup.object(validationSchemaLanguage);
     const { language } = formValues as yup.InferType<typeof yupSchema>;
@@ -140,10 +123,6 @@ const changeLanguage = async (formValues: object): Promise<void> => {
     // }
 };
 
-const clearUserData = () => {
-    isClearDataModalOpened.value = true;
-};
-
 const formSubmitSettings = async (formValues: object): Promise<void> => {
     // const yupSchema = yup.object(validationSchemaLogin);
     // const { email, password } = formValues as yup.InferType<typeof yupSchema>;
@@ -157,9 +136,5 @@ const formSubmitSettings = async (formValues: object): Promise<void> => {
             else useErrorAlert('Erreur', 'Connexion impossible');
         }
     }
-};
-
-const settingsModalChange = (value: boolean) => {
-    emit('update:modelValue', value);
 };
 </script>

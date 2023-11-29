@@ -1,6 +1,4 @@
 <template>
-    <LazySettingsModal v-model="isSettingsModalOpened" />
-
     <div class="flex flex-col gap-6 bg-white border-r-2 border-gray/5 text-gray/80 w-[250px]">
         <AppIcon class="self-center" size="xl" :name="IconEnum.OLLAMAX" />
         <div class="flex flex-col justify-between h-full overflow-hidden items-stretch gap-4">
@@ -28,7 +26,7 @@
                             </div>
                         </div>
                     </Transition>
-                    <NuxtLink :to="RouteEnum.CHAT" @click="toggleUserNav" class="z-user-profile relative select-none flex items-center gap-3 font-semibold transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md">
+                    <NuxtLink :to="RouteEnum.CHAT" @click="toggleUserNav" class="z-user-profile relative select-none flex items-center gap-3 font-semibold transition duration-200 px-4 py-2 rounded-md hover:bg-light-blue hover:text-purple text-md" :class="[isUserNavShowed ? 'bg-light-blue text-purple' : '']">
                         <AppImage class="rounded-full border border-2 border-gray/30" size="sm" :type="ImageTypeEnum.PROFILE" src="profile.jpg" />
                         <span>Arthurc0</span>
                     </NuxtLink>
@@ -45,8 +43,19 @@ import { RouteEnum } from '@/enums/RouteEnum';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
 import { ImageTypeEnum } from '@/enums/ImageTypeEnum';
 import { TransitionEnum } from '@/enums/TransitionEnum';
+import { ComponentEnum } from '@/enums/ComponentEnum';
 
-const isSettingsModalOpened = ref(false);
+const modalStore = useModalStore();
+
+const openSettingsModal = () => {
+    modalStore.open({
+        title: 'Paramètres',
+        view: ComponentEnum.SETTINGS_MODAL,
+        width: '600px',
+        height: '370px'
+    });
+};
+
 const navLinks: NavLinkInterface[] = [
     {
         icon: IconEnum.CHAT,
@@ -59,7 +68,7 @@ const userNavLinks: NavLinkInterface[] = [
         icon: IconEnum.SETTINGS,
         label: 'Paramètres',
         action: () => {
-            isSettingsModalOpened.value = true;
+            openSettingsModal();
         }
     },
     {
