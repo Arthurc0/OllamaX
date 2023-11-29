@@ -1,0 +1,17 @@
+export enum IconEnum {
+    OLLAMAX = 'OLLAMAX',
+    OLLAMA = 'OLLAMA',
+    CHAT = 'CHAT',
+    SETTINGS = 'SETTINGS',
+    USER = 'USER',
+    LOGOUT = 'LOGOUT',
+    ARROW_DOWN = 'ARROW_DOWN',
+    ARROW_UP = 'ARROW_UP',
+    DELETE = 'DELETE',
+    SUCCESS = 'SUCCESS',
+    ADD = 'ADD',
+
+    CLOSE = 'CLOSE',
+    ERROR = 'ERROR',
+    SEND = 'SEND'
+}

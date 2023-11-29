@@ -1,17 +1,28 @@
-import { defineNuxtConfig } from 'nuxt/config';
-
 export default defineNuxtConfig({
-    devtools: { enabled: true },
-    ssr: true,
+    devtools: {
+        enabled: true
+    },
     typescript: {
         strict: true,
         typeCheck: true
     },
-    alias: {
-        '@': './',
-        '#components': './.nuxt/components.d.ts'
-    },
     modules: [
-        '@nuxtjs/tailwindcss'
-    ]
+        '@nuxtjs/tailwindcss',
+        '@pinia/nuxt',
+        '@nuxt/image'
+    ],
+    app: {
+        pageTransition: {
+            appear: true,
+            mode: 'out-in',
+            name: 'page'
+        }
+    },
+    imports: {
+        dirs: [
+            'composables/**',
+            'stores/**',
+            'utils/**'
+        ]
+    }
 });
