@@ -10,8 +10,8 @@ export enum IconEnum {
     DELETE = 'DELETE',
     SUCCESS = 'SUCCESS',
     ADD = 'ADD',
+    SEND = 'SEND',
 
     CLOSE = 'CLOSE',
-    ERROR = 'ERROR',
-    SEND = 'SEND'
+    ERROR = 'ERROR'
 }
