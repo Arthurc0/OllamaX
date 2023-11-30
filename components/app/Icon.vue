@@ -1,5 +1,5 @@
 <template>
-    <svg class="inline-flex shrink-0" :class="[color]" :style="`height: ${size ? getComputedSize(size) : customSize}px; width: ${size ? getComputedSize(size) : customSize}px`">
+    <svg class="select-none pointer-events-none inline-flex shrink-0" :class="[color]" :style="`height: ${size ? getComputedSize(size) : customSize}px; width: ${size ? getComputedSize(size) : customSize}px`">
         <use :href="`${Icons}#${name}`" />
     </svg>
 </template>
