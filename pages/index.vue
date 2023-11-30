@@ -5,7 +5,7 @@
                 <h1 class="text-gray text-3xl font-semibold">Discussion 1</h1>
                 <span class="text-gray/20 text-lg font-medium">Vu il y a 2 heures</span>
             </div>
-            <div class="py-3 px-10 flex flex-col items-stretch gap-7 w-3/4 m-auto">
+            <div class="py-3 px-10 flex flex-col items-stretch gap-9 w-3/4 m-auto whitespace-pre-line">
                 <MessageCard v-for="(message, index) in messages" :key="index" from="me" :content="message" />
             </div>
         </div>
