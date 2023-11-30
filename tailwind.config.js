@@ -18,6 +18,7 @@ export default {
             'alert': '400',
             'modal': '201',
             'modal-overlay': '200',
+            'chat-title': '2',
             'user-profile': '2'
         },
         extend: {
