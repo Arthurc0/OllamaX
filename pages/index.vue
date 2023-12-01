@@ -1,7 +1,7 @@
 <template>
     <div class="relative flex flex-1 flex-col">
         <div ref="chatArea" class="overflow-y-auto h-full pb-3">
-            <div class="z-chat-title sticky top-0 backdrop-blur-sm select-none py-6 px-6 flex flex-col gap-2 items-center text-center">
+            <div class="z-chat-title sticky top-0 backdrop-blur-sm select-none p-6 flex flex-col gap-2 items-center text-center">
                 <h1 class="text-gray text-3xl font-semibold">Discussion 1</h1>
                 <span class="text-gray/20 text-lg font-medium">Vu il y a 2 heures</span>
             </div>

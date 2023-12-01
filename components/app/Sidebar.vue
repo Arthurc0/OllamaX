@@ -3,14 +3,23 @@
         <AppIcon class="self-center" size="xl" :name="IconEnum.OLLAMAX" />
         <div class="flex flex-col justify-between h-full overflow-hidden items-stretch gap-4">
             <nav class="mx-4 flex flex-col gap-3 overflow-y-auto">
-                <NuxtLink v-for="link in navLinks" :key="link.label" :to="link.url" class="group select-none flex items-center gap-3 font-semibold w-full transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md" :class="link.url === currentRoute ? 'bg-light-blue text-purple' : ''" :title="link.label">
-                    <AppIcon size="xs" :name="link.icon" class="transition duration-200 group-hover:text-purple/70 group-focus:text-purple/70" :class="link.url === currentRoute ? 'text-purple/70' : 'text-gray/40'" />
+                <NuxtLink v-for="link in navLinks" :key="link.label" :to="link.url" class="group select-none flex items-center gap-2 font-semibold w-full transition duration-200 px-4 py-2 rounded-md hocus:bg-light-blue hocus:text-purple text-md" :class="isActiveLink(link.url) ? 'bg-light-blue text-purple' : ''" :title="link.label">
+                    <AppIcon custom-size="25" :name="link.icon" class="transition duration-200 group-hover:text-purple/70 group-focus:text-purple/70" :class="isActiveLink(link.url) ? 'text-purple/70' : 'text-gray/40'" />
                     <span class="truncate">{{ link.label }}</span>
                 </NuxtLink>
             </nav>
             <div>
                 <div class="border-t-2 border-gray/5" />
-                <div class="relative m-4">
+                <div class="m-4 mb-2">
+                    <NuxtLink :to="RouteEnum.MODELS" class="group select-none flex flex-col gap-1 transition duration-200 px-4 py-2 rounded-md hover:bg-light-blue" :class="[isActiveLink(RouteEnum.MODELS) ? 'bg-light-blue' : '']">
+                        <span class="group-hover:text-purple/50 transition duration-200 text-gray/30 text-sm ml-1 font-medium" :class="activeModelLinkClasses.subtitle">Modèle utilisé</span>
+                        <div class="flex items-center gap-2">
+                            <AppIcon custom-size="25" :name="IconEnum.MODEL" color="group-hover:text-purple/70 transition duration-200 text-gray/50" :class="activeModelLinkClasses.icon" />
+                            <span class="group-hover:text-purple transition duration-200 text-gray/80 text-md font-semibold" :class="activeModelLinkClasses.modelName">Llama2</span>
+                        </div>
+                    </NuxtLink>
+                </div>
+                <div class="relative m-4 mt-2">
                     <Transition :name="TransitionEnum.MENU_POPUP">
                         <div class="select-none absolute w-full bg-white flex flex-col gap-4 py-3 rounded-md text-[15px] text-gray/70 shadow-around" style="transform: translateY(-108%);" v-if="isUserNavShowed">
                             <div class="flex items-center justify-between px-4 gap-3 font-semibold">
@@ -26,7 +35,7 @@
                             </div>
                         </div>
                     </Transition>
-                    <NuxtLink :to="RouteEnum.CHAT" @click="toggleUserNav" class="z-user-profile relative select-none flex items-center gap-3 font-semibold transition duration-200 px-4 py-2 rounded-md hover:bg-light-blue hover:text-purple text-md" :class="[isUserNavShowed ? 'bg-light-blue text-purple' : '']">
+                    <NuxtLink @click="toggleUserNav" class="z-user-profile cursor-pointer relative select-none flex items-center gap-3 font-semibold transition duration-200 px-4 py-2 rounded-md hover:bg-light-blue hover:text-purple text-md" :class="[isUserNavShowed ? 'bg-light-blue text-purple' : '']">
                         <AppImage class="rounded-full border border-2 border-gray/30" size="sm" :type="ImageTypeEnum.PROFILE" src="profile.jpg" />
                         <span>Arthurc0</span>
                     </NuxtLink>
@@ -46,6 +55,26 @@ import { TransitionEnum } from '@/enums/TransitionEnum';
 import { ComponentEnum } from '@/enums/ComponentEnum';
 
 const modalStore = useModalStore();
+const route: RouteLocationNormalizedLoaded = useRoute();
+const isUserNavShowed = ref(false);
+
+const isActiveLink = (link?: string) => {
+    if (link) return link === route.path;
+    return false;
+};
+const activeModelLinkClasses = computed(() => ({
+    subtitle: isActiveLink(RouteEnum.MODELS) ? 'text-purple/50' : '',
+    icon: isActiveLink(RouteEnum.MODELS) ? 'text-purple/70' : '',
+    modelName: isActiveLink(RouteEnum.MODELS) ? 'text-purple' : ''
+}));
+
+const navLinks: NavLinkInterface[] = [
+    {
+        icon: IconEnum.CHAT,
+        label: 'Discussion 1',
+        url: RouteEnum.CHAT
+    }
+];
 
 const openSettingsModal = () => {
     modalStore.open({
@@ -55,14 +84,6 @@ const openSettingsModal = () => {
         height: '370px'
     });
 };
-
-const navLinks: NavLinkInterface[] = [
-    {
-        icon: IconEnum.CHAT,
-        label: 'Discussion 1',
-        url: RouteEnum.CHAT
-    }
-];
 const userNavLinks: NavLinkInterface[] = [
     {
         icon: IconEnum.SETTINGS,
@@ -77,10 +98,6 @@ const userNavLinks: NavLinkInterface[] = [
         url: RouteEnum.CHAT
     }
 ];
-const route: RouteLocationNormalizedLoaded = useRoute();
-const currentRoute = computed(() => route.path);
-const isUserNavShowed = ref(false);
-
 const toggleUserNav = () => {
     isUserNavShowed.value = !isUserNavShowed.value;
 };

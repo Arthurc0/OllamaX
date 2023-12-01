@@ -11,6 +11,7 @@ export enum IconEnum {
     SUCCESS = 'SUCCESS',
     ADD = 'ADD',
     SEND = 'SEND',
+    MODEL = 'MODEL',
 
     CLOSE = 'CLOSE',
     ERROR = 'ERROR'
