@@ -1,14 +1,15 @@
-import 'module-alias/register';
+import 'tsconfig-paths/register';
 import knex from 'knex';
 import type { Knex } from 'knex';
 import { Logger } from '@/server/utils/logger';
 
 const config: Knex.Config = {
     acquireConnectionTimeout: 10000,
-    client: 'sqlite3',
+    client: 'better-sqlite3',
     connection: {
         filename: '../../database.sqlite'
     },
+    useNullAsDefault: true,
     migrations: {
         directory: '../database/migrations',
         extension: 'ts',
