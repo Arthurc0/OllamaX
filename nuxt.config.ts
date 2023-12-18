@@ -24,5 +24,8 @@ export default defineNuxtConfig({
             'stores/**',
             'utils/**'
         ]
+    },
+    runtimeConfig: {
+        API_URL: process.env.API_URL as string
     }
 });
