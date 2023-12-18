@@ -1,7 +1,7 @@
 import { ErrorCodeEnum } from '@/enums/ErrorCodeEnum';
 import { StatusCodeEnum } from '@/enums/StatusCodeEnum';
 import { RequestError } from '@/classes/RequestError';
-import { db } from '@/server/config/database';
+import { db } from '@/server/database/db-config';
 
 export abstract class AbstractRepository<T> {
     protected tableName: string;

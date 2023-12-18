@@ -24,3 +24,4 @@ logs
 !.env.sample
 
 private
+database.sqlite
