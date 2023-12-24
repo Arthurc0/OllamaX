@@ -26,6 +26,7 @@ export default defineNuxtConfig({
         ]
     },
     runtimeConfig: {
-        API_URL: process.env.API_URL as string
+        API_URL: process.env.API_URL as string,
+        OLLAMA_URL: process.env.OLLAMA_URL as string
     }
 });
