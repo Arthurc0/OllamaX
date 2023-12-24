@@ -4,7 +4,7 @@
             <AppIcon :name="IconEnum.SUCCESS" size="xs" class="text-white/50" />
             <span class="text-white/70 text-xs font-semibold">Sélectionné</span>
         </div>
-        <div class="child w-full h-[60px] bg-left group-hover:bg-right bg-[length:140%]" :style="{ backgroundImage: `linear-gradient(100deg, ${theme.gradient.join(', ')})`, transition: 'background-position 0.3s' }"></div>
+        <div class="w-full h-[60px] bg-left group-hover:bg-right bg-[length:140%]" :style="{ backgroundImage: `linear-gradient(100deg, ${theme.gradient.join(', ')})`, transition: 'background-position 0.3s' }"></div>
         <span class="px-2 py-1 bg-light-gray text-sm font-medium" :class="[theme?.selected ? 'font-bold' : 'font-normal']">{{ theme.name }}</span>
     </div>
 </template>
