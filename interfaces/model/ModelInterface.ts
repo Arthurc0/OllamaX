@@ -1,4 +1,8 @@
 export interface ModelInterface {
     name: string;
-    selected?: boolean;
+    digest: string;
+    size: number;
+    details: {
+        family: string;
+    };
 }
